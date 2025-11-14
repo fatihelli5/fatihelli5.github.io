@@ -1,0 +1,1330 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="QR EsnaF ile işletmeniz için hızlı ve pratik QR kod çözümleri. Sanal uygulamalar, ödeme kolaylığı ve daha fazlası için hemen keşfedin.">
+    <meta property="og:title" content="QR EsnaF - İşletmeniz için QR Kod Çözümleri">
+    <meta property="og:description" content="Sanal çözümleriyle işletmenizi dijitalleştirin.">
+    <meta property="og:url" content="https://qresnaf.com">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://qresnaf.com/private/assets/images/qrkod_anasayfa.jpg">
+    <meta name="robots" content="noimageindex">
+    <link rel="canonical" href="https://qresnaf.com/">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.cdnfonts.com/css/telegraf" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/garet" rel="stylesheet">
+    <link rel="icon" href="private/assets/img/only_qr_logo.ico" type="image/x-icon" />
+    <title>QR EsnaF | Anasayfa</title>
+    <script type="application/ld+json">
+    {
+    "@context": "https://schema.org",
+    "@graph": [
+        {
+        "@type": "Organization",
+        "@id": "https://qresnaf.com/#org",
+        "name": "QR EsnaF",
+        "url": "https://qresnaf.com",
+        "logo": {
+            "@id": "https://qresnaf.com/#logo"
+        },
+        "sameAs": [
+            "https://www.instagram.com/qr.esnaf",
+            "https://www.facebook.com/qresnaf"
+        ]
+        },
+        {
+        "@type": "ImageObject",
+        "@id": "https://qresnaf.com/#logo",
+        "url": "https://qresnaf.com/private/assets/img/only_qr_logo.png",
+        "width": 500,
+        "height": 500,
+        "caption": "QR EsnaF Logo"
+        },
+        {
+        "@type": "WebSite",
+        "@id": "https://qresnaf.com/#website",
+        "url": "https://qresnaf.com",
+        "name": "QR EsnaF",
+        "publisher": {
+            "@id": "https://qresnaf.com/#org"
+        }
+        }
+    ]
+    }
+    </script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Disable development warnings in production
+        if (typeof tailwind !== 'undefined') {
+            tailwind.config = {
+                darkMode: 'class',
+                theme: {
+                    extend: {
+                        colors: {
+                            'qr-blue': '#1e3a8a',
+                            'qr-orange': '#f97316',
+                            'qr-red': '#dc2626',
+                            'qr-green': '#16a34a'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0, 0, 0, 0.7);
+            backdrop-filter: blur(5px);
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .modal-content {
+            background: white;
+            border-radius: 20px;
+            width: 90%;
+            max-width: 1000px;
+            height: 90vh;
+            max-height: 800px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.3);
+            transform: scale(0.9) translateY(50px);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dark .modal-content {
+            background: #1f2937;
+            border: 1px solid #374151;
+        }
+
+        .modal-overlay.active .modal-content {
+            transform: scale(1) translateY(0);
+        }
+
+        .modal-header {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 20px 20px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .modal-close {
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .modal-close:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: scale(1.1);
+        }
+
+        .modal-body {
+            height: calc(100% - 80px);
+            padding: 0;
+        }
+
+        .pdf-iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            background: #f8fafc;
+        }
+
+        .dark .pdf-iframe {
+            background: #374151;
+        }
+
+        .loading-spinner {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .spinner {
+            width: 40px;
+            height: 40px;
+            border: 3px solid #e5e7eb;
+            border-top: 3px solid #1e3a8a;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .error-message {
+            background: #fef2f2;
+            color: #dc2626;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px;
+            border: 1px solid #fecaca;
+        }
+
+        .dark .error-message {
+            background: #7f1d1d;
+            color: #fca5a5;
+            border-color: #991b1b;
+        }
+
+        @media (max-width: 768px) {
+            .modal-content {
+                width: 95%;
+                height: 95vh;
+                border-radius: 15px;
+            }
+            
+            .modal-header {
+                padding: 15px;
+                border-radius: 15px 15px 0 0;
+            }
+        }
+        .hero-bg {
+            background: linear-gradient(135deg, #f3f4f6 0%, #e5e7eb 100%);
+        }
+        .dark .hero-bg {
+            background: linear-gradient(135deg, #374151 0%, #1f2937 100%);
+        }
+        .feature-bg {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+        }
+        .dark .feature-bg {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3730a3 100%);
+        }
+        .plan-gradient {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+        }
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        /* Dark Mode Toggle Button */
+        .dark-mode-toggle {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #111d3c 0%, #000000 100%);
+            border: none;
+            cursor: pointer;
+            z-index: 9999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .dark-mode-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+        }
+        
+        .dark .dark-mode-toggle {
+            background: linear-gradient(135deg, #9ec8ef 0%, #295f91 100%);
+        }
+        
+        /* Dark mode transitions */
+        body {
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+        
+        /* Solution Cards Hover Animation */
+        .solution-card {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .solution-card:hover {
+            transform: scale(1.05) translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+        }
+        
+        .dark .solution-card:hover {
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.1);
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #1e3a8a 0%, #22c55e 100%);
+            border: none;
+            cursor: pointer;
+            z-index: 9998;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 24px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(100px);
+        }
+        
+        /* Infrastructure Links Hover Animation */
+        .infrastructure-link {
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .infrastructure-link:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        .dark .infrastructure-link:hover {
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.2);
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        
+        .back-to-top:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+        }
+        
+        .dark .back-to-top {
+            background: linear-gradient(135deg, #1e3a8a 0%, #16a34a 100%);
+        }
+        
+        /* Image Protection Styles */
+        .protected-image {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            -webkit-user-drag: none;
+            -webkit-touch-callout: none;
+            -webkit-tap-highlight-color: transparent;
+            pointer-events: none;
+        }
+        
+        /* Disable right-click context menu */
+        .no-context {
+            -webkit-touch-callout: none;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+        
+        /* Overlay protection for images */
+        .image-container {
+            position: relative;
+            display: inline-block;
+        }
+        
+        .image-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: transparent;
+            z-index: 10;
+            pointer-events: all;
+        }
+        
+        /* Font Override - FORCE APPLICATION */
+        * {
+            font-family: 'Garet', sans-serif !important;
+        }
+        
+        h1, h2, h3, h4, h5, h6, .heading, button, a, stripe-buy-button {
+            font-family: 'Telegraf', serif !important;
+            font-weight: 900 !important;
+            letter-spacing: -0.5px !important;
+        }
+    </style>
+</head>
+<body class="dark:bg-gray-900 dark:text-white">
+    <!-- Header Navigation -->
+    <header class="fixed top-0 left-0 right-0 bg-white/50 dark:bg-gray-900/50 backdrop-blur-md z-40 shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <div class="flex items-center">
+                    <div class="image-container">
+                        <img class="h-12 w-auto protected-image" src="private/assets/img/only_qr_logo.png" alt="QR EsnaF Logo">
+                        <div class="image-overlay"></div>
+                    </div>
+                </div>
+
+                <!-- Navigation Links -->
+                <div class="hidden md:flex items-center space-x-6">
+                    <a href="#prices" class="text-gray-700 dark:text-gray-300 hover:text-qr-blue dark:hover:text-blue-400 transition duration-300">Fiyatlar</a>
+                    <a href="#contact" class="text-gray-700 dark:text-gray-300 hover:text-qr-blue dark:hover:text-blue-400 transition duration-300">İletişim</a>
+                    <button onclick="openLoginModal()" class="text-qr-blue hover:text-blue-700 font-medium transition duration-300">
+                        Giriş Yap
+                    </button>
+                    <button onclick="openLoginModal(); showRegisterForm();" class="bg-qr-blue text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">
+                        Kaydol
+                    </button>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button onclick="toggleMobileMenu()" class="text-gray-700 dark:text-gray-300 hover:text-qr-blue dark:hover:text-blue-400">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden bg-white dark:bg-gray-900 border-t dark:border-gray-700">
+                <div class="px-4 py-4 space-y-4">
+                    <a href="#prices" class="block text-gray-700 dark:text-gray-300 hover:text-qr-blue dark:hover:text-blue-400 transition duration-300">Fiyatlar</a>
+                    <a href="#contact" class="block text-gray-700 dark:text-gray-300 hover:text-qr-blue dark:hover:text-blue-400 transition duration-300">İletişim</a>
+                    <button onclick="openLoginModal()" class="block w-full text-left text-qr-blue hover:text-blue-700 font-medium transition duration-300">
+                        Giriş Yap
+                    </button>
+                    <button onclick="openLoginModal(); showRegisterForm();" class="block w-full bg-qr-blue text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition duration-300">
+                        Kaydol
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Dark Mode Toggle Button -->
+    <button class="dark-mode-toggle float-animation" onclick="toggleDarkMode()" id="darkModeToggle">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon-icon lucide-moon"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
+    </button>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top float-animation" onclick="scrollToTop()" id="backToTop">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-icon lucide-arrow-up"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg>
+    </button>
+
+    <!-- Hero Section -->
+    <section class="hero-bg pt-24 pb-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-center items-center mb-12">
+                <div class="image-container">
+                    <img class="h-32 w-auto dark:hidden float-animation protected-image" style="animation-delay: 0.5s;" src="private/assets/img/qr_logo_siyah.svg" alt="QR EsnaF Logo">
+                    <div class="image-overlay"></div>
+                </div>
+                <div class="image-container">
+                    <img class="h-32 w-auto hidden dark:block float-animation protected-image" style="animation-delay: 0.5s;" src="private/assets/img/qr_logo_beyaz.svg" alt="QR EsnaF Logo">
+                    <div class="image-overlay"></div>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h1 class="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-6">
+                        Teknolojiye yabancı olmak zorunda değilsiniz
+                    </h1>
+                    <p class="text-lg text-gray-600 dark:text-gray-300 mb-8">
+                        QR EsnaF ile büyümeye başlayın
+                    </p>
+                    <a href="#solutions" class="bg-qr-blue text-white px-16 py-3 rounded-lg shadow-lg text-lg font-medium hover:bg-blue-100 hover:text-qr-blue transition duration-300">
+                        Başla
+                    </a>
+                    
+                    <!-- QR Code -->
+                    <div class="mt-8">
+                        <a href="#" target="_blank" rel="noopener" rel="noreferrer" class="bg-purple-950 text-white px-16 py-3 rounded-lg shadow-lg text-lg font-medium hover:bg-purple-200 hover:text-purple-950 transition duration-300">
+                            Müşteri Paneli
+                        </a>
+                        <br />
+                        <div class="bg-white p-1 rounded-lg shadow-lg inline-block image-container mt-8">
+                            <img src="private/assets/img/qrkod_mail.png" alt="QR Code" class="w-32 h-32 protected-image">
+                            <div class="image-overlay"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Hero Image -->
+                <div class="relative">
+                    <div class="bg-gradient-to-br from-blue-100 to-blue-200 rounded-3xl p-8 dark:bg-gradient-to-br dark:from-blue-950 dark:to-blue-650">
+                        <div>
+                            <div class="bg-white rounded-2xl p-6 shadow-xl dark:bg-gray-800">
+                                <div class="w-16 h-16 bg-blue-100 dark:bg-blue-950 rounded-full flex items-center justify-center mb-4">
+                                    <span class="text-white text-2xl image-container">
+                                        <img src="private/assets/img/art_1.png" alt="QR EsnaF Sanal Çözüm" class="protected-image">
+                                        <div class="image-overlay"></div>
+                                    </span>
+                                </div>
+                                    <a href="https://docs.qresnaf.com" target="_blank" rel="noopener" rel="noreferrer" class="bg-qr-blue text-white px-16 py-3 rounded-lg shadow-lg text-lg font-medium hover:bg-blue-100 hover:text-qr-blue transition duration-300">
+                                        Kılavuz
+                                    </a>
+                                <div class="space-y-2 mt-4">
+                                    <div class="h-4 bg-gray-200 dark:bg-blue-950 rounded"></div>
+                                    <div class="h-4 bg-gray-200 dark:bg-blue-950 rounded"></div>
+                                    <div class="h-4 bg-gray-200 dark:bg-blue-950 rounded w-3/4"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Floating Elements -->
+                        <div class="absolute top-4 right-4 bg-qr-red rounded-full w-8 h-8 float-animation" style="animation-delay: 0.5s;"></div>
+                        <div class="absolute bottom-8 left-4 bg-yellow-400 rounded-full w-6 h-6 float-animation" style="animation-delay: 1s;"></div>
+                        <div class="absolute top-1/2 right-8 bg-qr-green rounded-full w-4 h-4 float-animation" style="animation-delay: 1.5s;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-16 bg-white dark:bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Feature 1 -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
+                <div class="feature-bg rounded-3xl p-8">
+                    <div class="bg-white dark:bg-gray-700 rounded-2xl p-6 shadow-xl">
+                            <div class="image-container flex justify-center items-center">
+                                <img src="private/assets/img/art_6.png" class="w-1/2 protected-image" alt="QR EsnaF Sanal Çözüm">
+                                <div class="image-overlay"></div>
+                            </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">
+                        İhtiyacınıza göre sanal uygulamalarımıza göz atın
+                    </h2>
+                    <p class="text-lg text-gray-600 dark:text-gray-300 mb-4">
+                        Berber dükkanınız veya dövmeci stüdyonuz mu var, siz
+                        dükkanda değilken bile randevuları otomatikleştirin.
+                        Çalışma günlerinden saatlerine kadar hepsini ayarlayın.
+                    </p>
+                    <p class="text-lg text-gray-600 dark:text-gray-300">
+                        Lokantanız veya yerel kafeniz mi var, yeterince menü
+                        basılmadı mı, yeterli sayıda garson yok mu, bu sorunları
+                        sanal menü ile çözün.
+                    </p>
+                </div>
+            </div>
+
+            <!-- Feature 2 -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-20">
+                <div class="order-2 lg:order-1">
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">
+                        Rahat bir şekilde işletmenizi sanal dünyaya açın ve yönetin
+                    </h2>
+                    <p class="text-lg text-gray-600 dark:text-gray-300 mb-4">
+                        Sanal işletmeniz için belirleyeceğiniz uygulamayı
+                        şekillendirmek çok kolay. İster kullanıcı dostu yönetici
+                        paneli üzerinden gerçekleştirin, ister bize bırakın.
+                    </p>
+                    <p class="text-lg text-gray-600 dark:text-gray-300">
+                        İşletmenizi sanal aleme taşıdınız ama kişiselleştirdiniz mi?
+                        Biz bu sorunların hepsine çözüm getirdik ve en önemlisi
+                        bu çözüm kolay bir şekilde.
+                    </p>
+                </div>
+                
+                <div class="order-1 lg:order-2">
+                    <div class="bg-gradient-to-br from-gray-100 to-gray-200 dark:from-gray-700 dark:to-gray-600 rounded-3xl p-8">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg">
+                                <div class="w-12 h-12 bg-transparent rounded-lg mb-3 image-container">
+                                    <img src="private/assets/img/art_2.png" alt="QR EsnaF Sanal Çözüm" class="protected-image">
+                                    <div class="image-overlay"></div>
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="h-3 bg-gray-200 dark:bg-gray-600 rounded"></div>
+                                    <div class="h-3 bg-gray-200 dark:bg-gray-600 rounded w-2/3"></div>
+                                </div>
+                            </div>
+                            <div class="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg">
+                                <div class="w-12 h-12 bg-transparent rounded-lg mb-3 image-container">
+                                    <img src="private/assets/img/art_3.png" alt="QR EsnaF Sanal Çözüm" class="protected-image">
+                                    <div class="image-overlay"></div>
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="h-3 bg-gray-200 dark:bg-gray-600 rounded"></div>
+                                    <div class="h-3 bg-gray-200 dark:bg-gray-600 rounded w-2/3"></div>
+                                </div>
+                            </div>
+                            <div class="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg">
+                                <div class="w-12 h-12 bg-transparent rounded-lg mb-3 image-container">
+                                    <img src="private/assets/img/art_4.png" alt="QR EsnaF Sanal Çözüm" class="protected-image">
+                                    <div class="image-overlay"></div>
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="h-3 bg-gray-200 dark:bg-gray-600 rounded"></div>
+                                    <div class="h-3 bg-gray-200 dark:bg-gray-600 rounded w-2/3"></div>
+                                </div>
+                            </div>
+                            <div class="bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg">
+                                <div class="w-12 h-12 bg-transparent rounded-lg mb-3 image-container">
+                                    <img src="private/assets/img/art_7.png" alt="QR EsnaF Sanal Çözüm" class="protected-image">
+                                    <div class="image-overlay"></div>
+                                </div>
+                                <div class="space-y-2">
+                                    <div class="h-3 bg-gray-200 dark:bg-gray-600 rounded"></div>
+                                    <div class="h-3 bg-gray-200 dark:bg-gray-600 rounded w-2/3"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Feature 3 -->
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="bg-gradient-to-br from-blue-100 to-purple-100 dark:from-blue-900 dark:to-purple-900 rounded-3xl p-8">
+                    <div class="bg-white dark:bg-gray-700 rounded-2xl p-6 shadow-xl">
+                        <div class="image-container flex justify-center items-center">
+                            <img src="private/assets/img/art_5.png" class="w-1/2 protected-image" alt="QR EsnaF Sanal Çözüm">
+                            <div class="image-overlay"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div>
+                    <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-6">
+                        Kişiselleştirin, şans verin, karşılığını alın
+                    </h2>
+                    <p class="text-lg text-gray-600 dark:text-gray-300 mb-4">
+                        İşletmenizi yeni çağa ayak uyduracak şekilde sanal aleme
+                        taşıyın, güncellemelerden uzak kalmayın. Her bütçeye
+                        uygun iş çıkartacağımızın sözünü biz kendimize verdik.
+                    </p>
+                    <p class="text-lg text-gray-600 dark:text-gray-300 mb-4">
+                        Kolaylık, erişilebilirlik ve en önemlisi güvenliği kendimize
+                        şart edindik. Tüm sanal uygulamalarımız teknik anlamda
+                        güvenliği sağlayacağını garanti eder.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="prices" class="py-16 bg-white dark:bg-gray-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+                    İşletmenize uygun bir plan seçin
+                </h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Monthly -->
+                <div class="bg-white dark:bg-gray-700 border-2 border-gray-200 dark:border-gray-600 rounded-2xl p-8 relative">
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white mb-2">750₺</h3>
+                        <p class="text-gray-600 dark:text-gray-300 mb-6">Aylık Paket</p>
+                        
+                        <ul class="space-y-3 mb-8 text-left">
+                            <li class="flex items-center">
+                                <span class="text-green-500 mr-3">✓</span>
+                                <span class="text-gray-600 dark:text-gray-300">1 Aylık Sanal Çözüm Uygulaması</span>
+                            </li>
+                            <li class="flex items-center">
+                                <span class="text-green-500 mr-3">✓</span>
+                                <span class="text-gray-600 dark:text-gray-300">1 Aylık Uygulamanıza Özel Yönetici Paneli</span>
+                            </li>
+                            <li class="flex items-center">
+                                <span class="text-green-500 mr-3">✓</span>
+                                <span class="text-gray-600 dark:text-gray-300">1 Aylık İşletmenize Özel Subdomain</span>
+                            </li>
+                        </ul>
+                        <button onclick="openLoginModal('monthly')" class="w-full px-24 bg-gray-900 dark:bg-gray-600 text-white py-3 rounded-lg hover:bg-gray-800 dark:hover:bg-gray-500 transition duration-300">
+                            Seç
+                        </button>
+                    </div>
+                </div>
+                
+                <!-- Yearly -->
+                <div class="bg-white dark:bg-gray-700 border-2 border-qr-blue dark:border-blue-400 rounded-2xl p-8 relative">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2">
+                        <span class="bg-qr-blue dark:bg-blue-500 text-white px-4 py-1 rounded-full text-sm">Avantaj</span>
+                    </div>
+                    
+                    <div class="text-center">
+                        <h3 class="text-xl font-bold text-gray-900 dark:text-white">5000₺</h3>
+                        <p class="line-through mb-2">&nbsp;9000₺&nbsp;</p>
+                        <p class="text-gray-600 dark:text-gray-300 mb-6">Yıllık Paket</p>
+                        
+                        <ul class="space-y-3 mb-8 text-left">
+                            <li class="flex items-center">
+                                <span class="text-green-500 mr-3">✓</span>
+                                <span class="text-gray-600 dark:text-gray-300">1 Yıllık Sanal Çözüm Uygulaması</span>
+                            </li>
+                            <li class="flex items-center">
+                                <span class="text-green-500 mr-3">✓</span>
+                                <span class="text-gray-600 dark:text-gray-300">1 Yıllık Uygulamanıza Özel Yönetici Paneli</span>
+                            </li>
+                            <li class="flex items-center">
+                                <span class="text-green-500 mr-3">✓</span>
+                                <span class="text-gray-600 dark:text-gray-300">1 Yıllık İşletmenize Özel Subdomain</span>
+                            </li>
+                        </ul>
+                        <button onclick="openLoginModal('yearly')" class="w-full px-24 bg-gray-900 dark:bg-gray-600 text-white py-3 rounded-lg hover:bg-gray-800 dark:hover:bg-gray-500 transition duration-300">
+                            Seç
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions Section -->
+    <section id="solutions" class="py-16 bg-gray-700 dark:bg-gray-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-white mb-4">
+                    QR EsnaF çözümleriyle süreçlerinizi kolaylaştırın
+                </h2>
+            </div>
+            
+            <div class="grid grid-cols-2 md:grid-cols-5 gap-6">
+                <a href="https://ornek-menu.qresnaf.com" target="_blank" rel="noopener" rel="noreferrer" class="solution-card bg-gray-800 dark:bg-gray-900 rounded-lg p-6 text-center block relative overflow-visible">
+                    <span class="absolute -top-3 left-4 right-4 bg-qr-blue dark:bg-blue-500 text-white px-3 py-0.5 rounded-full text-xs font-bold shadow-xl z-20">Demoyu Görüntüle</span>
+                    <div class="w-16 h-16 bg-blue-600 rounded-lg mx-auto my-4 flex items-center justify-center">
+                        <span class="text-white text-2xl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-utensils-icon lucide-utensils"><path d="M3 2v7c0 1.1.9 2 2 2h4a2 2 0 0 0 2-2V2"/><path d="M7 2v20"/><path d="M21 15V2a5 5 0 0 0-5 5v6c0 1.1.9 2 2 2h3Zm0 0v7"/></svg></span>
+                    </div>
+                    <h3 class="text-white font-medium mb-2">Sanal Menü Uygulaması</h3>
+                </a>
+                
+                <button onclick="openPDF('randevu.pdf', 'Sanal Randevu Uygulaması')"  class="solution-card bg-gray-800 dark:bg-gray-900 rounded-lg p-6 text-center block relative overflow-visible">
+                    <span class="absolute -top-3 left-4 right-4 bg-qr-blue dark:bg-blue-500 text-white px-3 py-1 rounded-full text-xs font-bold shadow-xl z-20">Yakında</span>
+                    <div class="w-16 h-16 bg-green-600 rounded-lg mx-auto my-4 flex items-center justify-center">
+                        <span class="text-white text-2xl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-alarm-clock-icon lucide-alarm-clock"><circle cx="12" cy="13" r="8"/><path d="M12 9v4l2 2"/><path d="M5 3 2 6"/><path d="m22 6-3-3"/><path d="M6.38 18.7 4 21"/><path d="M17.64 18.67 20 21"/></svg></span>
+                    </div>
+                    <h3 class="text-white font-medium mb-2">Sanal Randevu Uygulaması</h3>
+                </button>
+                
+                <button onclick="openPDF('emlak.pdf', 'Sanal Oto Galeri/Emlak Uygulaması')"  class="solution-card bg-gray-800 dark:bg-gray-900 rounded-lg p-6 text-center block relative overflow-visible">
+                    <span class="absolute -top-3 left-4 right-4 bg-qr-blue dark:bg-blue-500 text-white px-3 py-0.5 rounded-full text-xs font-bold shadow-xl z-20">Yakında</span>
+                    <div class="w-16 h-16 bg-red-600 rounded-lg mx-auto my-4 flex items-center justify-center">
+                        <span class="text-white text-2xl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-car-front-icon lucide-car-front"><path d="m21 8-2 2-1.5-3.7A2 2 0 0 0 15.646 5H8.4a2 2 0 0 0-1.903 1.257L5 10 3 8"/><path d="M7 14h.01"/><path d="M17 14h.01"/><rect width="18" height="8" x="3" y="10" rx="2"/><path d="M5 18v2"/><path d="M19 18v2"/></svg></span>
+                    </div>
+                    <h3 class="text-white font-medium mb-2">Sanal Oto Galeri/Emlak Uygulaması</h3>
+                </button>
+                
+                <button onclick="openPDF('tanitim.pdf', 'Sanal İşletme Tanıtım Uygulaması')"  class="solution-card bg-gray-800 dark:bg-gray-900 rounded-lg p-6 text-center block relative overflow-visible">
+                    <span class="absolute -top-3 left-4 right-4 bg-qr-blue dark:bg-blue-500 text-white px-3 py-0.5 rounded-full text-xs font-bold shadow-xl z-20">Yakında</span>
+                    <div class="w-16 h-16 bg-purple-600 rounded-lg mx-auto my-4 flex items-center justify-center">
+                        <span class="text-white text-2xl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-store-icon lucide-store"><path d="m2 7 4.41-4.41A2 2 0 0 1 7.83 2h8.34a2 2 0 0 1 1.42.59L22 7"/><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><path d="M15 22v-4a2 2 0 0 0-2-2h-2a2 2 0 0 0-2 2v4"/><path d="M2 7h20"/><path d="M22 7v3a2 2 0 0 1-2 2a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 16 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 12 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 8 12a2.7 2.7 0 0 1-1.59-.63.7.7 0 0 0-.82 0A2.7 2.7 0 0 1 4 12a2 2 0 0 1-2-2V7"/></svg></span>
+                    </div>
+                    <h3 class="text-white font-medium mb-2">Sanal İşletme Tanıtım Uygulaması</h3>
+                </button>
+                
+                <a href="#solutions" rel="noopener" rel="noreferrer" class="solution-card bg-gray-800 dark:bg-gray-900 rounded-lg p-6 text-center block relative overflow-visible">
+                    <span class="absolute -top-3 left-4 right-4 bg-qr-blue dark:bg-blue-500 text-white px-3 py-0.5 rounded-full text-xs font-bold shadow-xl z-20">Yakında</span>
+                    <div class="w-16 h-16 bg-yellow-600 rounded-lg mx-auto my-4 flex items-center justify-center">
+                        <span class="text-white text-2xl"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-shopping-cart-icon lucide-shopping-cart"><circle cx="8" cy="21" r="1"/><circle cx="19" cy="21" r="1"/><path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"/></svg></span>
+                    </div>
+                    <h3 class="text-white font-medium mb-2">Sanal Mağaza Uygulaması</h3>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Generate Section -->
+    <section id="domain" class="py-16 bg-gray-700 dark:bg-gray-950">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl font-bold text-white mb-4">
+                    QR EsnaF ile işletmenize özel alan adı ile tanışın
+                </h2>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-1">
+                <a href="https://qresnaf.com/generate" rel="noopener" rel="noreferrer" class="solution-card bg-gray-800 dark:bg-gray-900 rounded-lg p-6 text-center block">
+                    <h1 class="text-white text-5xl sm:text-2xl md:text-5xl break-all overflow-hidden my-2"><span class="bg-gradient-to-r from-qr-blue via-purple-500 to-qr-blue bg-clip-text text-transparent animate-pulse hover:from-purple-500 hover:via-qr-blue hover:to-purple-400 transition-all duration-1000">isletme-adiniz</span>.qresnaf.com</h1>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-gradient-to-r from-qr-blue to-blue-700">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div>
+                    <h2 class="text-3xl font-bold text-white mb-6">
+                        Bizimle inovasyon yapın
+                    </h2>
+                    <p class="text-xl text-blue-100 dark:text-blue-200 mb-8">
+                        Kolay ve güvenli çözümlerle iş
+                        operasyonlarınızı otomatikleştirin
+                        ve basitleştirin.
+                    </p>
+                    <a href="mailto:hizmet@qresnaf.com" target="_blank" rel="noopener" rel="noreferrer" class="bg-white text-qr-blue px-8 py-3 rounded-lg text-lg font-medium hover:bg-blue-950 hover:text-white transition duration-300">
+                        İletişime Geç
+                    </a>
+                </div>
+                
+                <div class="relative">
+                    <div class="bg-white bg-opacity-10 rounded-3xl p-8">
+                        <div class="grid grid-cols-2 gap-4">
+                            <div class="space-y-4">
+                                <a href="https://canva.com/" target="_blank" rel="noopener" rel="noreferrer" class="infrastructure-link bg-purple-800 rounded-xl p-4 h-20 image-container flex items-center justify-center">
+                                    <img src="private/assets/img/altyapi_1.png" alt="QR EsnaF Sanal Çözüm Canva" class="protected-image w-1/2">
+                                    <div class="image-overlay"></div>
+                                </a>
+                                <a href="https://tailwindcss.com/" target="_blank" rel="noopener" rel="noreferrer" class="infrastructure-link bg-green-300 rounded-xl p-4 h-32 image-container flex items-center justify-center">
+                                    <img src="private/assets/img/altyapi_2.png" alt="QR EsnaF Sanal Çözüm Tailwind CSS" class="protected-image w-1/2">
+                                    <div class="image-overlay"></div>
+                                </a>
+                            </div>
+                            <div class="space-y-4">
+                                <a href="https://cloudflare.com/" target="_blank" rel="noopener" rel="noreferrer" class="infrastructure-link bg-yellow-600 rounded-xl p-4 h-32 image-container flex items-center justify-center">
+                                    <img src="private/assets/img/altyapi_3.png" alt="QR EsnaF Sanal Çözüm Cloudflare" class="protected-image w-1/2">
+                                    <div class="image-overlay"></div>
+                                </a>
+                                <a href="https://nextjs.org/" target="_blank" rel="noopener" rel="noreferrer" class="infrastructure-link bg-gray-900 rounded-xl p-4 h-20 image-container flex items-center justify-center">
+                                    <img src="private/assets/img/altyapi_4.png" alt="QR EsnaF Sanal Çözüm Next.js Next JS" class="protected-image w-1/2">
+                                    <div class="image-overlay"></div>
+                                </a>
+                            </div>
+                        </div>
+                        
+                        <!-- Floating Elements -->
+                        <div class="absolute top-4 right-4 bg-qr-green rounded-full w-6 h-6 float-animation"></div>
+                        <div class="absolute bottom-8 left-4 bg-yellow-400 rounded-full w-8 h-8 float-animation" style="animation-delay: 0.5s;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Login/Register Modals -->
+    <div id="authModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white dark:bg-gray-800 rounded-lg max-w-md w-full p-6 relative">
+                <button onclick="closeAuthModal()" class="absolute top-4 right-4 text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+
+                <!-- Login Form -->
+                <div id="loginForm" class="hidden">
+                    <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Giriş Yap</h2>
+                    <form onsubmit="handleLogin(event)">
+                        <div class="mb-4">
+                            <label for="loginEmail" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">E-posta</label>
+                            <input type="email" id="loginEmail" required class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-qr-blue dark:bg-gray-700 dark:text-white">
+                        </div>
+                        <div class="mb-6">
+                            <label for="loginPassword" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Şifre</label>
+                            <input type="password" id="loginPassword" required class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-qr-blue dark:bg-gray-700 dark:text-white">
+                        </div>
+                        <button type="submit" class="w-full bg-qr-blue text-white py-2 rounded-lg hover:bg-blue-700 transition duration-300">
+                            Giriş Yap
+                        </button>
+                    </form>
+                    <p class="mt-4 text-center text-sm text-gray-600 dark:text-gray-400">
+                        Hesabınız yok mu? 
+                        <button onclick="showRegisterForm()" class="text-qr-blue hover:underline">Kaydolun</button>
+                    </p>
+                </div>
+
+                <!-- Register Form -->
+                <div id="registerForm" class="hidden">
+                    <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-6">Kaydol</h2>
+                    <form onsubmit="handleRegister(event)">
+                        <div class="mb-4">
+                            <label for="registerName" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Ad Soyad</label>
+                            <input type="text" id="registerName" required class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-qr-blue dark:bg-gray-700 dark:text-white">
+                        </div>
+                        <div class="mb-4">
+                            <label for="registerEmail" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">E-posta</label>
+                            <input type="email" id="registerEmail" required class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-qr-blue dark:bg-gray-700 dark:text-white">
+                        </div>
+                        <div class="mb-4">
+                            <label for="registerPhone" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Telefon</label>
+                            <input type="tel" id="registerPhone" required class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-qr-blue dark:bg-gray-700 dark:text-white">
+                        </div>
+                        <div class="mb-6">
+                            <label for="registerPassword" class="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">Şifre</label>
+                            <input type="password" id="registerPassword" required class="w-full px-3 py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-qr-blue dark:bg-gray-700 dark:text-white">
+                        </div>
+                        <button type="submit" class="w-full bg-qr-blue text-white py-2 rounded-lg hover:bg-blue-700 transition duration-300">
+                            Kaydol
+                        </button>
+                    </form>
+                    <p class="mt-4 text-center text-sm text-gray-600 dark:text-gray-400">
+                        Zaten hesabınız var mı? 
+                        <button onclick="showLoginForm()" class="text-qr-blue hover:underline">Giriş Yapın</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Success Modal -->
+    <div id="successModal" class="fixed inset-0 bg-black bg-opacity-50 hidden z-50">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-white dark:bg-gray-800 rounded-lg max-w-md w-full p-6 text-center">
+                <div class="text-green-500 text-5xl mb-4">✓</div>
+                <h2 class="text-2xl font-bold text-gray-900 dark:text-white mb-4" id="successTitle">Başarılı!</h2>
+                <p class="text-gray-600 dark:text-gray-400 mb-6" id="successMessage"></p>
+                <button onclick="closeSuccessModal()" class="bg-qr-blue text-white px-6 py-2 rounded-lg hover:bg-blue-700 transition duration-300">
+                    Tamam
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer" class="bg-gray-900 dark:bg-gray-950 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="flex items-center mb-4 md:mb-0">
+                    <div class="image-container">
+                        <img class="h-16 w-auto protected-image" src="private/assets/img/qr_logo_beyaz.svg" alt="QR EsnaF Logo">
+                        <div class="image-overlay"></div>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <button onclick="openPDF('terms.pdf', 'Kullanım Koşulları')" class="bg-transparent dark:bg-transparent text-gray-400 px-6 py-3 rounded-lg hover:text-white dark:hover:text-white transition duration-300">
+                        Kullanım Koşulları
+                    </button>
+                    <button onclick="openPDF('privacy.pdf', 'Kullanım Koşulları')" class="bg-transparent dark:bg-transparent text-gray-400 px-6 py-3 rounded-lg hover:text-white dark:hover:text-white transition duration-300">
+                        Gizlilik Politikası
+                    </button>
+                    <p class="text-gray-400">© 2025 QR EsnaF. Tüm hakları saklıdır.</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <div id="pdfModal" class="modal-overlay" onclick="closeModal(event)">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <div class="modal-header">
+                <h2 id="modalTitle" class="text-xl font-bold">PDF Görüntüleniyor...</h2>
+                <button class="modal-close" onclick="closeModal()" aria-label="Modalı Kapat">
+                    ×
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="loadingSpinner" class="loading-spinner">
+                    <div class="spinner"></div>
+                    <p class="text-gray-600 dark:text-gray-300">PDF yükleniyor...</p>
+                </div>
+                <iframe id="pdfIframe" class="pdf-iframe" style="display: none;"></iframe>
+                <div id="errorMessage" class="error-message" style="display: none;">
+                    <h3 class="font-bold mb-2">PDF Yüklenemedi</h3>
+                    <p>Dosya bulunamadı veya yüklenirken bir hata oluştu. Lütfen daha sonra tekrar deneyin.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Auth Modal Functions
+        let selectedPlan = null;
+
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            mobileMenu.classList.toggle('hidden');
+        }
+
+        function openLoginModal(plan = null) {
+            selectedPlan = plan;
+            document.getElementById('authModal').classList.remove('hidden');
+            showLoginForm();
+            // Close mobile menu if open
+            document.getElementById('mobileMenu').classList.add('hidden');
+        }
+
+        function closeAuthModal() {
+            document.getElementById('authModal').classList.add('hidden');
+            selectedPlan = null;
+        }
+
+        function showLoginForm() {
+            document.getElementById('loginForm').classList.remove('hidden');
+            document.getElementById('registerForm').classList.add('hidden');
+        }
+
+        function showRegisterForm() {
+            document.getElementById('loginForm').classList.add('hidden');
+            document.getElementById('registerForm').classList.remove('hidden');
+        }
+
+        function closeSuccessModal() {
+            document.getElementById('successModal').classList.add('hidden');
+        }
+
+        // Auth API Functions
+        async function handleLogin(event) {
+            event.preventDefault();
+            
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+
+            try {
+                const response = await fetch('/api/auth/login.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ email, password })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    closeAuthModal();
+                    
+                    if (selectedPlan) {
+                        // Redirect to payment
+                        window.location.href = `/api/paytr/payment.php?plan=${selectedPlan}`;
+                    } else {
+                        // Redirect to dashboard
+                        window.location.href = '/dashboard/';
+                    }
+                } else {
+                    alert(data.message || 'Giriş başarısız oldu.');
+                }
+            } catch (error) {
+                console.error('Login error:', error);
+                alert('Bir hata oluştu. Lütfen tekrar deneyin.');
+            }
+        }
+
+        async function handleRegister(event) {
+            event.preventDefault();
+            
+            const name = document.getElementById('registerName').value;
+            const email = document.getElementById('registerEmail').value;
+            const phone = document.getElementById('registerPhone').value;
+            const password = document.getElementById('registerPassword').value;
+
+            // Split name into first and last name
+            const nameParts = name.trim().split(' ');
+            const first_name = nameParts[0] || '';
+            const last_name = nameParts.slice(1).join(' ') || '';
+
+            try {
+                // First get CSRF token
+                const tokenResponse = await fetch('/api/auth/get-token.php');
+                let csrf_token = null;
+                
+                if (tokenResponse.ok) {
+                    const tokenData = await tokenResponse.json();
+                    csrf_token = tokenData.csrf_token;
+                }
+
+                const response = await fetch('/api/auth/register.php', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({ 
+                        first_name, 
+                        last_name, 
+                        email, 
+                        phone, 
+                        password,
+                        company_name: 'Şirket Adı', // Default company name
+                        csrf_token
+                    })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    closeAuthModal();
+                    document.getElementById('successTitle').textContent = 'Kaydolma Başarılı!';
+                    document.getElementById('successMessage').textContent = 'E-posta adresinize doğrulama linki gönderildi. Lütfen e-postanızı kontrol edin.';
+                    document.getElementById('successModal').classList.remove('hidden');
+                } else {
+                    alert(data.message || 'Kaydolma başarısız oldu.');
+                }
+            } catch (error) {
+                console.error('Register error:', error);
+                alert('Bir hata oluştu. Lütfen tekrar deneyin.');
+            }
+        }
+
+        // Modal close on outside click
+        document.getElementById('authModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeAuthModal();
+            }
+        });
+
+        document.getElementById('successModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closeSuccessModal();
+            }
+        });
+
+        // PDF Modal Functions
+        function openPDF(pdfPath, title) {
+            const modal = document.getElementById('pdfModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const iframe = document.getElementById('pdfIframe');
+            const loadingSpinner = document.getElementById('loadingSpinner');
+            const errorMessage = document.getElementById('errorMessage');
+            
+            // Reset modal state
+            modalTitle.textContent = title || 'PDF Görüntüleniyor...';
+            iframe.style.display = 'none';
+            loadingSpinner.style.display = 'flex';
+            errorMessage.style.display = 'none';
+            
+            // Show modal
+            modal.classList.add('active');
+            document.body.style.overflow = 'hidden';
+            
+            // Load PDF
+            iframe.src = pdfPath;
+            
+            // Handle iframe load event
+            iframe.onload = function() {
+                loadingSpinner.style.display = 'none';
+                iframe.style.display = 'block';
+            };
+            
+            // Handle iframe error
+            iframe.onerror = function() {
+                loadingSpinner.style.display = 'none';
+                errorMessage.style.display = 'block';
+            };
+            
+            // Timeout fallback
+            setTimeout(() => {
+                if (iframe.style.display === 'none' && loadingSpinner.style.display === 'flex') {
+                    loadingSpinner.style.display = 'none';
+                    errorMessage.style.display = 'block';
+                }
+            }, 10000);
+        }
+
+        function closeModal(event) {
+            if (event && event.target !== event.currentTarget) {
+                return;
+            }
+            
+            const modal = document.getElementById('pdfModal');
+            const iframe = document.getElementById('pdfIframe');
+            
+            modal.classList.remove('active');
+            document.body.style.overflow = 'auto';
+            
+            // Clear iframe source to stop loading
+            setTimeout(() => {
+                iframe.src = '';
+            }, 300);
+        }
+
+        // Keyboard Events - DOMContentLoaded event listener'ının içine ekleyin
+        document.addEventListener('keydown', function(event) {
+            if (event.key === 'Escape') {
+                closeModal();
+            }
+        });
+        // Dark Mode Toggle Function
+        function toggleDarkMode() {
+            const html = document.documentElement;
+            const button = document.getElementById('darkModeToggle');
+            
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                button.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon-icon lucide-moon"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>';
+                localStorage.setItem('darkMode', 'false');
+            } else {
+                html.classList.add('dark');
+                button.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun-icon lucide-sun"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>';
+                localStorage.setItem('darkMode', 'true');
+            }
+        }
+        
+        // Back to Top Function
+        function scrollToTop() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        }
+        
+        // Show/Hide Back to Top Button
+        function toggleBackToTop() {
+            const backToTopBtn = document.getElementById('backToTop');
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        }
+        
+        // Initialize dark mode from localStorage
+        document.addEventListener('DOMContentLoaded', function() {
+            // Disable right-click context menu
+            document.addEventListener('contextmenu', function(e) {
+                e.preventDefault();
+                return false;
+            });
+            
+            // Disable F12, Ctrl+Shift+I, Ctrl+U
+            document.addEventListener('keydown', function(e) {
+                if (e.key === 'F12' || 
+                    (e.ctrlKey && e.shiftKey && e.key === 'I') ||
+                    (e.ctrlKey && e.key === 'u')) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+            
+            // Disable text selection on images
+            document.addEventListener('selectstart', function(e) {
+                if (e.target.tagName === 'IMG') {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+            
+            // Disable drag and drop for images
+            document.addEventListener('dragstart', function(e) {
+                if (e.target.tagName === 'IMG') {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+            
+            const darkMode = localStorage.getItem('darkMode');
+            const button = document.getElementById('darkModeToggle');
+            
+            if (darkMode === 'true') {
+                document.documentElement.classList.add('dark');
+                button.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-sun-icon lucide-sun"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg>';
+            } else {
+                button.innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon-icon lucide-moon"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>';
+            }
+            
+            // Add scroll event listener for back to top button
+            window.addEventListener('scroll', toggleBackToTop);
+            
+            // Add smooth scroll behavior
+            document.documentElement.style.scrollBehavior = 'smooth';
+            
+            // Add intersection observer for animations
+            const observerOptions = {
+                threshold: 0.1,
+                rootMargin: '0px 0px -50px 0px'
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animate-fade-in');
+                    }
+                });
+            }, observerOptions);
+            
+            // Observe all sections
+            document.querySelectorAll('section').forEach(section => {
+                observer.observe(section);
+            });
+            
+            // Add click animations to buttons
+            document.querySelectorAll('button').forEach(button => {
+                button.addEventListener('click', function() {
+                    this.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        this.style.transform = 'scale(1)';
+                    }, 150);
+                });
+            });
+        });
+        
+        // Add custom animation class
+        const style = document.createElement('style');
+        style.textContent = `
+            /* Hide sections initially */
+            section {
+                opacity: 0;
+                transform: translateY(50px);
+                transition: all 0.8s ease-in-out;
+            }
+            
+            /* Hero section should be visible immediately */
+            section:first-of-type {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            
+            .animate-fade-in {
+                opacity: 1 !important;
+                transform: translateY(0) !important;
+            }
+            
+            @keyframes fadeIn {
+                from {
+                    opacity: 0;
+                    transform: translateY(30px);
+                }
+                to {
+                    opacity: 1;
+                    transform: translateY(0);
+                }
+            }
+            
+            button {
+                transition: all 0.2s ease;
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>
