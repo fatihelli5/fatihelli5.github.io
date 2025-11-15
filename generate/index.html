@@ -304,14 +304,18 @@
                     <div class="space-y-4">
                         <div>
                             <label class="block text-gray-700 dark:text-gray-300 text-sm font-medium mb-2">
-                                Bağlantı Adresi
+                                İşletme Adı
                             </label>
-                            <textarea 
-                                id="textInput"
-                                class="w-full p-4 rounded-lg bg-gray-50 dark:bg-gray-700 border border-gray-300 dark:border-gray-600 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-qr-blue focus:border-transparent resize-none transition-all duration-200"
-                                rows="1"
-                                placeholder="isletme-adiniz.qresnaf.com"
-                            ></textarea>
+                            <div class="flex items-center border border-gray-300 dark:border-gray-600 rounded-lg overflow-hidden bg-gray-50 dark:bg-gray-700">
+                                <input 
+                                    id="businessName"
+                                    type="text"
+                                    class="flex-1 p-4 bg-gray-50 dark:bg-gray-700 text-gray-900 dark:text-white placeholder-gray-500 dark:placeholder-gray-400 focus:outline-none transition-all duration-200"
+                                    placeholder="isletme-adiniz"
+                                />
+                                <span class="px-4 text-gray-600 dark:text-gray-400 font-medium">.qresnaf.com</span>
+                            </div>
+                            <p class="text-xs text-gray-500 dark:text-gray-400 mt-2">Nokta (.) kullanamazsınız</p>
                         </div>
                         
                         <div class="grid grid-cols-2 gap-4">
@@ -439,19 +443,21 @@
         const qrColorInput = document.getElementById('qrColor');
         const emptyState = document.getElementById('emptyState');
         const qrDisplay = document.getElementById('qrDisplay');
+        const businessNameInput = document.getElementById('businessName');
 
         let currentQRData = null;
         let previewTimeout = null;
 
         // QR kod oluşturma fonksiyonu
         function generateQR(isPreview = false) {
-            const text = textInput.value.trim();
+            const businessName = businessNameInput.value.trim();
+            const text = businessName ? `${businessName}.qresnaf.com` : '';
             const size = parseInt(qrSizeSelect.value);
             const color = qrColorInput.value;
 
-            if (!text) {
+            if (!text || !businessName) {
                 if (!isPreview) {
-                    showNotification('Lütfen bir metin veya URL girin', 'error');
+                    showNotification('Lütfen işletme adı girin', 'error');
                 }
                 // Boşsa önizlemeyi temizle
                 emptyState.classList.remove('hidden');
@@ -553,7 +559,7 @@
 
         // Temizleme fonksiyonu
         function clearQR() {
-            textInput.value = '';
+            businessNameInput.value = '';
             currentQRData = null;
             emptyState.classList.remove('hidden');
             qrDisplay.classList.add('hidden');
@@ -601,12 +607,23 @@
         downloadBtn.addEventListener('click', downloadQR);
         clearBtn.addEventListener('click', clearQR);
 
-        // Canlı önizleme için event listeners
-        textInput.addEventListener('input', livePreview);
-        textInput.addEventListener('paste', livePreview);
+        // İşletme adı input kontrolleri
+        businessNameInput.addEventListener('input', function(e) {
+            // Nokta karakterini yasakla
+            this.value = this.value.replace(/\./g, '');
+            livePreview();
+        });
 
-        // Enter tuşu ile QR kod oluşturma
-        textInput.addEventListener('keypress', function(e) {
+        businessNameInput.addEventListener('paste', function(e) {
+            // Yapıştırılan metindeki noktaları kaldır
+            setTimeout(() => {
+                this.value = this.value.replace(/\./g, '');
+                livePreview();
+            }, 0);
+        });
+
+        // Canlı önizleme için event listeners
+        businessNameInput.addEventListener('keypress', function(e) {
             if (e.key === 'Enter' && !e.shiftKey) {
                 e.preventDefault();
                 generateQR(false);
