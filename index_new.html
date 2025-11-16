@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="QR EsnaF ile işletmeniz için hızlı ve pratik QR kod çözümleri. Sanal uygulamalar, ödeme kolaylığı ve daha fazlası için hemen keşfedin.">
+    <meta property="og:title" content="QR EsnaF - İşletmeniz için QR Kod Çözümleri">
+    <meta property="og:description" content="Sanal çözümleriyle işletmenizi dijitalleştirin.">
+    <meta property="og:url" content="https://qresnaf.com">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://qresnaf.com/private/assets/images/qrkod_anasayfa.jpg">
+    <link rel="canonical" href="https://qresnaf.com/">
+    <link href="https://fonts.cdnfonts.com/css/telegraf" rel="stylesheet">
+    <link href="https://fonts.cdnfonts.com/css/garet" rel="stylesheet">
+    <link rel="icon" href="private/assets/img/only_qr_logo.ico" type="image/x-icon" />
+    <title>QR EsnaF | Anasayfa</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        'qr-blue': '#1e3a8a',
+                        'qr-orange': '#f97316',
+                        'qr-red': '#dc2626',
+                        'qr-green': '#16a34a'
+                    },
+                    fontFamily: {
+                        'heading': ['Telegraf', 'serif'],
+                        'body': ['Garet', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        * {
+            font-family: 'Garet', sans-serif;
+        }
+        h1, h2, h3, h4, h5, h6, button, a {
+            font-family: 'Telegraf', serif !important;
+            font-weight: 900 !important;
+        }
+        
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+        
+        .animate-fadeInUp {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+        
+        .animate-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 50%, #8b5cf6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .glass {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        .dark .glass {
+            background: rgba(0, 0, 0, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-300">
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <a href="#" class="flex items-center space-x-3">
+                    <img src="private/assets/img/only_qr_logo.png" alt="QR EsnaF" class="h-12 w-12">
+                    <span class="text-2xl font-bold gradient-text">QR EsnaF</span>
+                </a>
+                
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="#features" class="hover:text-qr-blue transition">Özellikler</a>
+                    <a href="#pricing" class="hover:text-qr-blue transition">Fiyatlandırma</a>
+                    <a href="#references" class="hover:text-qr-blue transition">Referanslar</a>
+                    <a href="#contact" class="hover:text-qr-blue transition">İletişim</a>
+                </div>
+                
+                <button onclick="toggleDarkMode()" class="p-3 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition">
+                    <svg id="darkIcon" class="w-6 h-6 hidden dark:block" fill="currentColor" viewBox="0 0 20 20">
+                        <path d="M17.293 13.293A8 8 0 016.707 2.707a8.001 8.001 0 1010.586 10.586z"></path>
+                    </svg>
+                    <svg id="lightIcon" class="w-6 h-6 block dark:hidden" fill="currentColor" viewBox="0 0 20 20">
+                        <path fill-rule="evenodd" d="M10 2a1 1 0 011 1v1a1 1 0 11-2 0V3a1 1 0 011-1zm4 8a4 4 0 11-8 0 4 4 0 018 0zm-.464 4.95l.707.707a1 1 0 001.414-1.414l-.707-.707a1 1 0 00-1.414 1.414zm2.12-10.607a1 1 0 010 1.414l-.706.707a1 1 0 11-1.414-1.414l.707-.707a1 1 0 011.414 0zM17 11a1 1 0 100-2h-1a1 1 0 100 2h1zm-7 4a1 1 0 011 1v1a1 1 0 11-2 0v-1a1 1 0 011-1zM5.05 6.464A1 1 0 106.465 5.05l-.708-.707a1 1 0 00-1.414 1.414l.707.707zm1.414 8.486l-.707.707a1 1 0 01-1.414-1.414l.707-.707a1 1 0 011.414 1.414zM4 11a1 1 0 100-2H3a1 1 0 000 2h1z" clip-rule="evenodd"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-20 px-4 relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-blue-50 via-purple-50 to-pink-50 dark:from-gray-900 dark:via-blue-900/20 dark:to-purple-900/20"></div>
+        
+        <div class="max-w-7xl mx-auto relative z-10">
+            <div class="grid lg:grid-cols-2 gap-12 items-center">
+                <div class="space-y-8 animate-fadeInUp">
+                    <h1 class="text-5xl lg:text-7xl font-bold leading-tight">
+                        Teknolojiye <span class="gradient-text">yabancı olmak</span> zorunda değilsiniz
+                    </h1>
+                    <p class="text-xl text-gray-600 dark:text-gray-300">
+                        QR EsnaF ile işletmenizi dijital dünyaya taşıyın. Modern, hızlı ve güvenli çözümlerle büyümeye başlayın.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <a href="#pricing" class="px-8 py-4 bg-gradient-to-r from-qr-blue to-blue-600 text-white rounded-full font-semibold hover:shadow-2xl hover:scale-105 transition-all duration-300 text-center">
+                            Hemen Başla
+                        </a>
+                        <a href="https://api.whatsapp.com/message/NYKFHECSC7BDD1?autoload=1&app_absent=0" target="_blank" class="px-8 py-4 glass rounded-full font-semibold hover:shadow-xl transition-all duration-300 text-center">
+                            İletişime Geç
+                        </a>
+                    </div>
+                    <div class="flex items-center gap-4">
+                        <img src="private/assets/img/qrkod_mail.png" alt="QR Code" class="w-24 h-24 rounded-xl shadow-lg">
+                        <div>
+                            <p class="text-sm text-gray-600 dark:text-gray-400">Hızlı iletişim için</p>
+                            <p class="font-semibold">QR Kodu tarayın</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="relative animate-fadeInUp" style="animation-delay: 0.2s;">
+                    <div class="absolute inset-0 bg-gradient-to-r from-qr-blue to-purple-600 rounded-3xl blur-3xl opacity-20 animate-float"></div>
+                    <div class="relative bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-2xl">
+                        <div class="space-y-6">
+                            <div class="flex items-center gap-4">
+                                <div class="w-16 h-16 bg-gradient-to-br from-qr-blue to-blue-600 rounded-2xl flex items-center justify-center">
+                                    <img src="private/assets/img/art_1.png" alt="Icon" class="w-10 h-10">
+                                </div>
+                                <div>
+                                    <h3 class="font-bold text-lg">Dijital Menü</h3>
+                                    <p class="text-sm text-gray-600 dark:text-gray-400">QR kod ile kolay erişim</p>
+                                </div>
+                            </div>
+                            <a href="https://docs.qresnaf.com" target="_blank" class="block w-full px-6 py-4 bg-gradient-to-r from-qr-blue to-blue-600 text-white rounded-xl font-semibold hover:shadow-xl transition-all duration-300 text-center">
+                                📚 Kullanım Kılavuzu
+                            </a>
+                            <div class="space-y-3">
+                                <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded-full"></div>
+                                <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded-full w-4/5"></div>
+                                <div class="h-3 bg-gray-200 dark:bg-gray-700 rounded-full w-3/5"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-20 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-bold mb-4">
+                    Neler <span class="gradient-text">Sunuyoruz?</span>
+                </h2>
+                <p class="text-xl text-gray-600 dark:text-gray-400">
+                    İşletmeniz için modern dijital çözümler
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="group p-8 bg-white dark:bg-gray-800 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+                    <div class="w-16 h-16 bg-gradient-to-br from-green-400 to-emerald-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6v6m0 0v6m0-6h6m-6 0H6"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Sanal Menü Sistemi</h3>
+                    <p class="text-gray-600 dark:text-gray-400">
+                        QR kod ile müşterileriniz menünüze anında erişebilir. Basılı menü maliyetlerinden kurtulun.
+                    </p>
+                </div>
+                
+                <div class="group p-8 bg-white dark:bg-gray-800 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+                    <div class="w-16 h-16 bg-gradient-to-br from-blue-400 to-blue-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Yönetim Paneli</h3>
+                    <p class="text-gray-600 dark:text-gray-400">
+                        Menünüzü dilediğiniz zaman güncelleyin. Kolay ve hızlı yönetim arayüzü.
+                    </p>
+                </div>
+                
+                <div class="group p-8 bg-white dark:bg-gray-800 rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2">
+                    <div class="w-16 h-16 bg-gradient-to-br from-purple-400 to-purple-600 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 01-9 9m9-9a9 9 0 00-9-9m9 9H3m9 9a9 9 0 01-9-9m9 9c1.657 0 3-4.03 3-9s-1.343-9-3-9m0 18c-1.657 0-3-4.03-3-9s1.343-9 3-9m-9 9a9 9 0 019-9"></path>
+                        </svg>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Özel Domain</h3>
+                    <p class="text-gray-600 dark:text-gray-400">
+                        İşletmenize özel alan adı ile profesyonel bir görünüm kazanın.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Solutions Section -->
+    <section id="solutions" class="py-20 px-4 bg-gray-900 dark:bg-black text-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-bold mb-4">
+                    <span class="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">Çözümlerimiz</span>
+                </h2>
+                <p class="text-xl text-gray-400">
+                    Süreçlerinizi kolaylaştıran dijital çözümler
+                </p>
+            </div>
+            
+            <div class="max-w-2xl mx-auto">
+                <a href="https://ornek-menu.qresnaf.com" target="_blank" class="block group">
+                    <div class="relative bg-gradient-to-br from-blue-900 to-purple-900 rounded-3xl p-8 overflow-hidden hover:shadow-2xl hover:shadow-blue-500/50 transition-all duration-500">
+                        <!-- Badge -->
+                        <div class="absolute -top-12 -right-12 w-40 h-40 bg-gradient-to-br from-qr-orange to-red-500 rounded-full blur-3xl opacity-50 group-hover:opacity-70 transition-opacity"></div>
+                        
+                        <div class="relative z-10">
+                            <div class="flex items-center justify-between mb-6">
+                                <div class="flex items-center gap-4">
+                                    <div class="w-16 h-16 bg-white/10 backdrop-blur-sm rounded-2xl flex items-center justify-center group-hover:scale-110 transition-transform">
+                                        <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                                        </svg>
+                                    </div>
+                                    <div>
+                                        <h3 class="text-2xl font-bold mb-1">Sanal Menü Uygulaması</h3>
+                                        <p class="text-gray-300">QR kod ile kolay erişim</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="bg-qr-orange/20 px-4 py-2 rounded-full border border-qr-orange/50">
+                                    <span class="text-qr-orange font-bold text-sm">DEMO</span>
+                                </div>
+                            </div>
+                            
+                            <p class="text-gray-300 mb-6">
+                                Restoran, kafe ve işletmeniz için profesyonel dijital menü çözümü. Müşterileriniz QR kodu tarayarak menünüze anında erişebilir.
+                            </p>
+                            
+                            <div class="grid grid-cols-2 gap-3 mb-6">
+                                <div class="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-lg">
+                                    <svg class="w-5 h-5 text-qr-green" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span class="text-sm">Kolay Güncelleme</span>
+                                </div>
+                                <div class="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-lg">
+                                    <svg class="w-5 h-5 text-qr-blue" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span class="text-sm">Mobil Uyumlu</span>
+                                </div>
+                                <div class="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-lg">
+                                    <svg class="w-5 h-5 text-purple-400" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span class="text-sm">Çoklu Dil</span>
+                                </div>
+                                <div class="flex items-center gap-2 bg-white/10 backdrop-blur-sm px-4 py-2 rounded-lg">
+                                    <svg class="w-5 h-5 text-qr-orange" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span class="text-sm">Hızlı Yükleme</span>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-center justify-between">
+                                <span class="text-gray-400 text-sm">Demo'yu görüntülemek için tıklayın</span>
+                                <svg class="w-6 h-6 text-white group-hover:translate-x-2 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-20 px-4 bg-gray-100 dark:bg-gray-800">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-bold mb-4">
+                    <span class="gradient-text">Fiyatlandırma</span>
+                </h2>
+                <p class="text-xl text-gray-600 dark:text-gray-400">
+                    İşletmenize uygun paketi seçin
+                </p>
+            </div>
+            
+            <div class="grid md:grid-cols-4 gap-6">
+                <div class="bg-white dark:bg-gray-900 rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300">
+                    <h3 class="text-2xl font-bold mb-2">1 Aylık</h3>
+                    <div class="text-4xl font-bold mb-6">750₺</div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-qr-green mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Sanal Menü</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-qr-green mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Yönetim Paneli</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-qr-green mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Subdomain</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-qr-green mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>7/24 İletişim</span>
+                        </li>
+                    </ul>
+                    <button class="w-full py-3 bg-gray-900 dark:bg-gray-700 text-white rounded-xl font-semibold hover:bg-gray-800 transition">Seç</button>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-900 rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300">
+                    <div class="text-sm text-qr-orange font-bold mb-2">%22 İndirim</div>
+                    <h3 class="text-2xl font-bold mb-2">3 Aylık</h3>
+                    <div class="text-4xl font-bold mb-1">1750₺</div>
+                    <div class="text-gray-500 line-through mb-6">2250₺</div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-qr-green mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Tüm özellikler</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-qr-green mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>3 ay destek</span>
+                        </li>
+                    </ul>
+                    <button class="w-full py-3 bg-gray-900 dark:bg-gray-700 text-white rounded-xl font-semibold hover:bg-gray-800 transition">Seç</button>
+                </div>
+                
+                <div class="bg-white dark:bg-gray-900 rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-300">
+                    <div class="text-sm text-qr-orange font-bold mb-2">%33 İndirim</div>
+                    <h3 class="text-2xl font-bold mb-2">6 Aylık</h3>
+                    <div class="text-4xl font-bold mb-1">3000₺</div>
+                    <div class="text-gray-500 line-through mb-6">4500₺</div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-qr-green mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Tüm özellikler</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 text-qr-green mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>6 ay destek</span>
+                        </li>
+                    </ul>
+                    <button class="w-full py-3 bg-gray-900 dark:bg-gray-700 text-white rounded-xl font-semibold hover:bg-gray-800 transition">Seç</button>
+                </div>
+                
+                <div class="bg-gradient-to-br from-qr-blue to-purple-600 text-white rounded-3xl p-8 shadow-2xl transform hover:scale-105 transition-all duration-300 relative">
+                    <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-qr-orange px-4 py-1 rounded-full text-sm font-bold">
+                        EN POPÜLER
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2">12 Aylık</h3>
+                    <div class="text-4xl font-bold mb-1">6000₺</div>
+                    <div class="text-white/70 line-through mb-6">9000₺</div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>Tüm özellikler</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>12 ay destek</span>
+                        </li>
+                        <li class="flex items-start">
+                            <svg class="w-6 h-6 mr-2 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                            </svg>
+                            <span>İlk kurulum ücretsiz</span>
+                        </li>
+                    </ul>
+                    <button class="w-full py-3 bg-white text-qr-blue rounded-xl font-semibold hover:bg-gray-100 transition">Seç</button>
+                </div>
+            </div>
+            <p class="text-center text-gray-600 dark:text-gray-400 mt-8">⚠️ Kurulum ücreti ürün adedine göre değişiklik göstermektedir.</p>
+        </div>
+    </section>
+
+    <!-- References Section -->
+    <section id="references" class="py-20 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl lg:text-5xl font-bold mb-4">
+                    <span class="gradient-text">İş Ortaklarımız</span>
+                </h2>
+                <p class="text-xl text-gray-600 dark:text-gray-400">
+                    Güvenle çalıştığımız firmalar
+                </p>
+            </div>
+            
+            <div class="space-y-12">
+                <!-- Liverpool Marina -->
+                <div class="group bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500">
+                    <div class="grid md:grid-cols-2 gap-8 items-center">
+                        <div class="order-2 md:order-1 relative rounded-2xl bg-gray-100 dark:bg-gray-700 p-4" style="min-height: 300px;">
+                            <img src="private/assets/img/liverpool.jpg" alt="Liverpool Marina" class="w-full h-full object-contain rounded-xl transform group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                        <div class="order-1 md:order-2">
+                            <h3 class="text-3xl font-bold mb-2">Liverpool Marina</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-6">Restoran & Balık Lokantası</p>
+                            <div class="grid grid-cols-2 gap-3 mb-6">
+                                <div class="flex items-center gap-2 bg-green-50 dark:bg-green-900/20 px-4 py-3 rounded-lg">
+                                    <svg class="w-5 h-5 text-qr-green flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span class="text-sm font-medium">Sanal Menü</span>
+                                </div>
+                                <div class="flex items-center gap-2 bg-blue-50 dark:bg-blue-900/20 px-4 py-3 rounded-lg">
+                                    <svg class="w-5 h-5 text-qr-blue flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span class="text-sm font-medium">7/24 İletişim</span>
+                                </div>
+                                <div class="flex items-center gap-2 bg-purple-50 dark:bg-purple-900/20 px-4 py-3 rounded-lg">
+                                    <svg class="w-5 h-5 text-purple-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span class="text-sm font-medium">Yönetim</span>
+                                </div>
+                                <div class="flex items-center gap-2 bg-orange-50 dark:bg-orange-900/20 px-4 py-3 rounded-lg">
+                                    <svg class="w-5 h-5 text-qr-orange flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                    <span class="text-sm font-medium">Özel Domain</span>
+                                </div>
+                            </div>
+                            <a href="https://liverpool-marina.qresnaf.com" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-qr-blue to-blue-600 text-white rounded-xl font-semibold hover:shadow-xl transition-all duration-300">
+                                Siteyi Ziyaret Et
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Örnek Kafe -->
+                <div class="group bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500">
+                    <div class="grid md:grid-cols-2 gap-8 items-center">
+                        <div class="md:text-right">
+                            <h3 class="text-3xl font-bold mb-2">Örnek Kafe</h3>
+                            <p class="text-gray-600 dark:text-gray-400 mb-6">Kafe & Bistro</p>
+                            <div class="grid grid-cols-2 gap-3 mb-6">
+                                <div class="flex items-center gap-2 justify-end bg-green-50 dark:bg-green-900/20 px-4 py-3 rounded-lg">
+                                    <span class="text-sm font-medium">Dijital Menü</span>
+                                    <svg class="w-5 h-5 text-qr-green flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                                <div class="flex items-center gap-2 justify-end bg-blue-50 dark:bg-blue-900/20 px-4 py-3 rounded-lg">
+                                    <span class="text-sm font-medium">Online Sipariş</span>
+                                    <svg class="w-5 h-5 text-qr-blue flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                                <div class="flex items-center gap-2 justify-end bg-purple-50 dark:bg-purple-900/20 px-4 py-3 rounded-lg">
+                                    <span class="text-sm font-medium">Anlık Güncelleme</span>
+                                    <svg class="w-5 h-5 text-purple-600 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                                <div class="flex items-center gap-2 justify-end bg-orange-50 dark:bg-orange-900/20 px-4 py-3 rounded-lg">
+                                    <span class="text-sm font-medium">Mobil Uyumlu</span>
+                                    <svg class="w-5 h-5 text-qr-orange flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                            <a href="https://ornek-kafe.qresnaf.com" target="_blank" class="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-xl font-semibold hover:shadow-xl transition-all duration-300">
+                                Siteyi Ziyaret Et
+                                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                                </svg>
+                            </a>
+                        </div>
+                        <div class="relative rounded-2xl bg-gray-100 dark:bg-gray-700 p-4" style="min-height: 300px;">
+                            <img src="private/assets/img/only_qr_logo.png" alt="Örnek Kafe" class="w-full h-full object-contain rounded-xl transform group-hover:scale-105 transition-transform duration-500">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 px-4 bg-gradient-to-br from-qr-blue via-blue-700 to-purple-700 text-white">
+        <div class="max-w-7xl mx-auto text-center">
+            <h2 class="text-4xl lg:text-5xl font-bold mb-6">
+                Bizimle İnovasyon Yapın
+            </h2>
+            <p class="text-xl mb-12 opacity-90">
+                Kolay ve güvenli çözümlerle iş operasyonlarınızı otomatikleştirin ve basitleştirin.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <a href="mailto:hizmet@qresnaf.com" class="px-8 py-4 bg-white text-qr-blue rounded-full font-semibold hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                    E-posta Gönder
+                </a>
+                <a href="https://api.whatsapp.com/message/NYKFHECSC7BDD1?autoload=1&app_absent=0" target="_blank" class="px-8 py-4 glass rounded-full font-semibold hover:shadow-xl transition-all duration-300">
+                    WhatsApp'tan Yaz
+                </a>
+            </div>
+            
+            <!-- Tech Stack -->
+            <div class="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6">
+                <a href="https://canva.com/" target="_blank" class="glass rounded-2xl p-6 hover:bg-white/20 transition-all duration-300">
+                    <img src="private/assets/img/altyapi_1.png" alt="Canva" class="h-12 mx-auto">
+                </a>
+                <a href="https://tailwindcss.com/" target="_blank" class="glass rounded-2xl p-6 hover:bg-white/20 transition-all duration-300">
+                    <img src="private/assets/img/altyapi_2.png" alt="Tailwind CSS" class="h-12 mx-auto">
+                </a>
+                <a href="https://cloudflare.com/" target="_blank" class="glass rounded-2xl p-6 hover:bg-white/20 transition-all duration-300">
+                    <img src="private/assets/img/altyapi_3.png" alt="Cloudflare" class="h-12 mx-auto">
+                </a>
+                <a href="https://nextjs.org/" target="_blank" class="glass rounded-2xl p-6 hover:bg-white/20 transition-all duration-300">
+                    <img src="private/assets/img/altyapi_4.png" alt="Next.js" class="h-12 mx-auto">
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Domain Section -->
+    <section class="py-20 px-4">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl lg:text-4xl font-bold mb-6">
+                İşletmenize özel <span class="gradient-text">alan adı</span>
+            </h2>
+            <a href="https://qresnaf.com/generate" class="inline-block">
+                <div class="text-2xl lg:text-4xl font-bold bg-gray-100 dark:bg-gray-800 px-8 py-6 rounded-2xl hover:shadow-xl transition-all duration-300">
+                    <span class="gradient-text">isletme-adiniz</span><span class="text-gray-600 dark:text-gray-400">.qresnaf.com</span>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="py-12 px-4 bg-gray-900 text-white">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+                <div class="flex items-center gap-3">
+                    <img src="private/assets/img/qr_logo_beyaz.svg" alt="QR EsnaF" class="h-12">
+                </div>
+                <div class="flex gap-6 text-sm">
+                    <button onclick="openModal('terms.pdf', 'Kullanım Koşulları')" class="hover:text-gray-300 transition">Kullanım Koşulları</button>
+                    <button onclick="openModal('privacy.pdf', 'Gizlilik Politikası')" class="hover:text-gray-300 transition">Gizlilik Politikası</button>
+                </div>
+            </div>
+            <div class="text-center mt-8 text-sm text-gray-400">
+                © 2025 QR EsnaF. Tüm hakları saklıdır.
+            </div>
+        </div>
+    </footer>
+
+    <!-- PDF Modal -->
+    <div id="pdfModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-gray-800 rounded-3xl max-w-5xl w-full max-h-[90vh] flex flex-col overflow-hidden">
+            <div class="flex items-center justify-between p-6 border-b dark:border-gray-700">
+                <h3 id="modalTitle" class="text-2xl font-bold"></h3>
+                <button onclick="closeModal()" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <iframe id="pdfFrame" class="flex-1" frameborder="0"></iframe>
+        </div>
+    </div>
+
+    <script>
+        // Dark Mode Toggle
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+            localStorage.setItem('darkMode', document.documentElement.classList.contains('dark'));
+        }
+
+        // Initialize Dark Mode
+        if (localStorage.getItem('darkMode') === 'true') {
+            document.documentElement.classList.add('dark');
+        }
+
+        // PDF Modal
+        function openModal(pdfPath, title) {
+            const modal = document.getElementById('pdfModal');
+            const iframe = document.getElementById('pdfFrame');
+            const modalTitle = document.getElementById('modalTitle');
+            
+            modalTitle.textContent = title;
+            iframe.src = pdfPath;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('pdfModal');
+            const iframe = document.getElementById('pdfFrame');
+            
+            modal.classList.add('hidden');
+            modal.classList.remove('flex');
+            iframe.src = '';
+        }
+
+        // Smooth Scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+
+        // Fade in on scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('section').forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(30px)';
+            section.style.transition = 'all 0.6s ease-out';
+            observer.observe(section);
+        });
+    </script>
+</body>
+</html>
