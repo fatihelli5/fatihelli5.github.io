@@ -114,6 +114,90 @@
         .dark .dark-mode-toggle {
             background: linear-gradient(135deg, #9ec8ef 0%, #295f91 100%);
         }
+        
+        /* FAQ Animations */
+        details {
+            transition: all 0.3s ease;
+        }
+        
+        details[open] {
+            animation: slideDown 0.3s ease-out;
+        }
+        
+        details[open] summary {
+            color: #1e3a8a;
+            border-bottom: 2px solid #1e3a8a;
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        .dark details[open] summary {
+            color: #3b82f6;
+            border-bottom: 2px solid #3b82f6;
+        }
+        
+        details summary:hover {
+            transform: translateX(4px);
+            color: #1e3a8a;
+        }
+        
+        .dark details summary:hover {
+            color: #3b82f6;
+        }
+        
+        details p {
+            animation: fadeInUp 0.4s ease-out;
+        }
+        
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                max-height: 60px;
+            }
+            to {
+                opacity: 1;
+                max-height: 500px;
+            }
+        }
+        
+        /* Mobile Menu */
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        .mobile-menu.active {
+            max-height: 300px;
+        }
+        
+        .hamburger {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .hamburger span {
+            width: 24px;
+            height: 3px;
+            background-color: currentColor;
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+        
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+        
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
     </style>
 </head>
 <body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-white transition-colors duration-300">
@@ -126,11 +210,29 @@
                     <img src="private/assets/img/only_qr_logo.png" alt="QR EsnaF" class="h-12 w-12">
                 </a>
                 
+                <!-- Desktop Menu -->
                 <div class="hidden md:flex items-center space-x-8">
                     <a href="#features" class="hover:text-qr-blue transition">Özellikler</a>
                     <a href="#pricing" class="hover:text-qr-blue transition">Fiyatlandırma</a>
                     <a href="#references" class="hover:text-qr-blue transition">Referanslar</a>
                     <a href="#contact" class="hover:text-qr-blue transition">İletişim</a>
+                </div>
+                
+                <!-- Mobile Menu Button -->
+                <button onclick="toggleMobileMenu()" class="md:hidden hamburger" id="hamburger" aria-label="Toggle menu">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div class="mobile-menu md:hidden" id="mobileMenu">
+                <div class="py-4 space-y-2">
+                    <a href="#features" onclick="toggleMobileMenu()" class="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition">Özellikler</a>
+                    <a href="#pricing" onclick="toggleMobileMenu()" class="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition">Fiyatlandırma</a>
+                    <a href="#references" onclick="toggleMobileMenu()" class="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition">Referanslar</a>
+                    <a href="#contact" onclick="toggleMobileMenu()" class="block px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-lg transition">İletişim</a>
                 </div>
             </div>
         </div>
@@ -603,8 +705,8 @@
                 <!-- Liverpool Marina -->
                 <div class="group bg-white dark:bg-gray-800 rounded-3xl p-8 shadow-lg hover:shadow-2xl transition-all duration-500">
                     <div class="grid md:grid-cols-2 gap-8 items-center">
-                        <div class="order-2 md:order-1 relative rounded-2xl bg-gray-100 dark:bg-gray-700 p-4" style="min-height: 300px;">
-                            <img src="private/assets/img/liverpool.jpg" alt="Liverpool Marina" class="w-full h-full object-contain rounded-xl transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="order-2 md:order-1 relative rounded-2xl overflow-hidden bg-gray-100 dark:bg-gray-700 flex items-center justify-center" style="min-height: 280px; max-height: 400px;">
+                            <img src="private/assets/img/liverpool.jpg" alt="Liverpool Marina" class="w-full h-full object-contain rounded-xl transform group-hover:scale-105 transition-transform duration-500" style="max-width: 100%; max-height: 100%;">
                         </div>
                         <div class="order-1 md:order-2">
                             <h3 class="text-3xl font-bold mb-2">Liverpool Marina</h3>
@@ -684,8 +786,8 @@
                                 </svg>
                             </a>
                         </div>
-                        <div class="relative rounded-2xl bg-gray-100 dark:bg-gray-700 p-4" style="min-height: 300px;">
-                            <img src="private/assets/img/only_qr_logo.png" alt="Örnek Kafe" class="w-full h-full object-contain rounded-xl transform group-hover:scale-105 transition-transform duration-500">
+                        <div class="relative rounded-2xl overflow-hidden bg-gray-100 dark:bg-gray-700 flex items-center justify-center" style="min-height: 280px; max-height: 400px;">
+                            <img src="private/assets/img/only_qr_logo.png" alt="Örnek Kafe" class="w-full h-full object-contain rounded-xl transform group-hover:scale-105 transition-transform duration-500" style="max-width: 100%; max-height: 100%;">
                         </div>
                     </div>
                 </div>
@@ -783,6 +885,15 @@
     </div>
 
     <script>
+        // Mobile Menu Toggle
+        function toggleMobileMenu() {
+            const mobileMenu = document.getElementById('mobileMenu');
+            const hamburger = document.getElementById('hamburger');
+            
+            mobileMenu.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }
+        
         // Dark Mode Toggle
         function toggleDarkMode() {
             document.documentElement.classList.toggle('dark');
