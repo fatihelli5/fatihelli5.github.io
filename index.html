@@ -843,11 +843,16 @@
     </section>
 
     <!-- Footer -->
+       <!-- Footer -->
     <footer class="py-12 px-4 bg-gray-900 text-white">
         <div class="max-w-7xl mx-auto">
             <div class="flex flex-col md:flex-row justify-between items-center gap-6">
-                <div class="flex items-center gap-3">
+                <div class="flex flex-col items-center md:items-start gap-3">
                     <img src="private/assets/img/qr_logo_beyaz.svg" alt="QR EsnaF" class="h-12">
+                    <p class="text-sm text-gray-400 text-center md:text-left">
+                         Rize, Merkez<br>
+                        Taşlıdere Mah. Alipaşa Sokak No: 2
+                    </p>
                 </div>
                 <div class="flex gap-6 text-sm">
                     <button onclick="openModal('terms.pdf', 'Kullanım Koşulları')" class="hover:text-gray-300 transition">Kullanım Koşulları</button>
@@ -862,16 +867,16 @@
 
     <!-- PDF Modal -->
     <div id="pdfModal" class="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
-        <div class="bg-white dark:bg-gray-800 rounded-3xl max-w-5xl w-full max-h-[90vh] flex flex-col overflow-hidden">
-            <div class="flex items-center justify-between p-6 border-b dark:border-gray-700">
+        <div class="bg-white dark:bg-gray-800 rounded-3xl w-full h-full max-w-7xl max-h-[95vh] flex flex-col overflow-hidden shadow-2xl">
+            <div class="flex items-center justify-between p-6 border-b dark:border-gray-700 bg-gray-50 dark:bg-gray-900">
                 <h3 id="modalTitle" class="text-2xl font-bold"></h3>
-                <button onclick="closeModal()" class="p-2 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition">
+                <button onclick="closeModal()" class="p-3 hover:bg-gray-200 dark:hover:bg-gray-700 rounded-full transition-all duration-200 hover:scale-110">
                     <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
                     </svg>
                 </button>
             </div>
-            <iframe id="pdfFrame" class="flex-1" frameborder="0"></iframe>
+            <iframe id="pdfFrame" class="flex-1 w-full h-full" frameborder="0"></iframe>
         </div>
     </div>
 
