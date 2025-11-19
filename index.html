@@ -84,8 +84,9 @@
             background: rgba(0, 0, 0, 0.2);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        /* Back to Top Button */
-         .back-to-top {
+        
+        /* Back to Top Button - Basit ve Çalışır Hali */
+        #backToTop {
             position: fixed;
             bottom: 20px;
             left: 20px;
@@ -102,21 +103,23 @@
             color: white;
             font-size: 24px;
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease;
+            transition: opacity 0.3s, transform 0.3s;
             opacity: 0;
-            visibility: hidden;
-            transform: translateY(100px);
+            pointer-events: none;
         }
         
-        .back-to-top.show {
+        #backToTop.show {
             opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
+            pointer-events: auto;
         }
         
-        .back-to-top:hover {
-            transform: scale(1.1) translateY(-5px);
+        #backToTop:hover {
+            transform: scale(1.1);
             box-shadow: 0 6px 25px rgba(0, 0, 0, 0.4);
+        }
+        
+        .dark #backToTop {
+            background: linear-gradient(135deg, #1e3a8a 0%, #16a34a 100%);
         }
         
         /* Dark Mode Toggle Button */
@@ -272,13 +275,14 @@
         </div>
     </nav>
 
-    <!-- Dark Mode Toggle Button -->
-    <button class="dark-mode-toggle float-animation" onclick="toggleDarkMode()" id="darkModeToggle">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon-icon lucide-moon"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
-    </button>
     <!-- Back to Top Button -->
     <button class="back-to-top float-animation" onclick="scrollToTop()" id="backToTop">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-arrow-up-icon lucide-arrow-up"><path d="m5 12 7-7 7 7"/><path d="M12 19V5"/></svg>
+    </button>
+
+    <!-- Dark Mode Toggle Button -->
+    <button class="dark-mode-toggle float-animation" onclick="toggleDarkMode()" id="darkModeToggle">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-moon-icon lucide-moon"><path d="M20.985 12.486a9 9 0 1 1-9.473-9.472c.405-.022.617.46.402.803a6 6 0 0 0 8.268 8.268c.344-.215.825-.004.803.401"/></svg>
     </button>
 
     <!-- Hero Section -->
@@ -301,13 +305,6 @@
                         <a href="https://api.whatsapp.com/message/NYKFHECSC7BDD1?autoload=1&app_absent=0" target="_blank" class="px-8 py-4 glass rounded-full font-semibold hover:shadow-xl transition-all duration-300 text-center">
                             İletişime Geç
                         </a>
-                    </div>
-                    <div class="flex items-center gap-4">
-                        <img src="private/assets/img/qrkod_mail.png" alt="QR Code" class="w-24 h-24 rounded-xl shadow-lg">
-                        <div>
-                            <p class="text-sm text-gray-600 dark:text-gray-400">Hızlı iletişim için</p>
-                            <p class="font-semibold">QR Kodu tarayın</p>
-                        </div>
                     </div>
                 </div>
                 
@@ -612,7 +609,7 @@
                     <p class="text-center text-xs text-white/70 mt-3">En avantajlı seçim</p>
                 </div>
             </div>
-            <p class="text-center text-gray-600 dark:text-gray-400 mt-8">⚠️ Kurulum ücreti ürün adedine göre değişiklik göstermektedir.</p>
+            <p class="text-center text-gray-600 dark:text-gray-400 mt-8">Kurulum ücreti ürün adedine göre değişiklik göstermektedir.</p>
         </div>
     </section>
 
@@ -799,14 +796,16 @@
             </p>
             <div class="flex flex-col sm:flex-row gap-4 justify-center">
                 <a href="tel:+905514858833" class="px-8 py-4 bg-green-500 rounded-full font-semibold hover:shadow-2xl hover:scale-105 transition-all duration-300">
-                    
                     Hemen Ara
                 </a>
                 <a href="mailto:hizmet@qresnaf.com" class="px-8 py-4 bg-white text-qr-blue rounded-full font-semibold hover:shadow-2xl hover:scale-105 transition-all duration-300">
                     E-posta Gönder
                 </a>
-                <a href="https://api.whatsapp.com/message/NYKFHECSC7BDD1?autoload=1&app_absent=0" target="_blank" class="px-8 py-4 glass rounded-full font-semibold hover:shadow-xl transition-all duration-300">
+                <a href="https://api.whatsapp.com/message/NYKFHECSC7BDD1?autoload=1&app_absent=0" target="_blank" class="px-8 py-4 bg-blue-500 rounded-full font-semibold hover:shadow-2xl hover:scale-105 transition-all duration-300">
                     WhatsApp'tan Yaz
+                </a>
+                <a href="https://www.instagram.com/qr.esnaf/" target="_blank" class="px-8 py-4 bg-purple-500 rounded-full font-semibold hover:shadow-2xl hover:scale-105 transition-all duration-300">
+                    Instagram'dan Yaz
                 </a>
             </div>
             
@@ -912,25 +911,21 @@
             document.documentElement.classList.add('dark');
         }
         updateDarkModeIcon();
-          // Add scroll event listener for back to top button
-            window.addEventListener('scroll', toggleBackToTop);
-        // Back to Top Function
+        
+        // Back to Top - En Basit Çalışan Versiyon
         function scrollToTop() {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
+            window.scrollTo({ top: 0, behavior: 'smooth' });
         }
         
-        // Show/Hide Back to Top Button
-        function toggleBackToTop() {
-            const backToTopBtn = document.getElementById('backToTop');
-            if (window.pageYOffset > 300) {
-                backToTopBtn.classList.add('show');
+        window.onscroll = function() {
+            var btn = document.getElementById('backToTop');
+            if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+                btn.classList.add('show');
             } else {
-                backToTopBtn.classList.remove('show');
+                btn.classList.remove('show');
             }
-        }
+        };
+        
         // PDF Modal
         function openModal(pdfPath, title) {
             const modal = document.getElementById('pdfModal');
